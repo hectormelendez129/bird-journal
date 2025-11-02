@@ -1,2 +1,13 @@
-# bird-journal
-A website that allows families to journal their bird watching journey and research birds along the way. Made with MongoDB, Express, Node.
+## Installation
+
+1. Clone repo
+2. run `npm install`
+
+## Usage
+
+1. run `node server.js`
+2. Navigate to `localhost:8080`
+
+## Credit
+
+Modified from Scotch.io's auth tutorial
