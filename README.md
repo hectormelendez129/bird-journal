@@ -2,7 +2,7 @@
 
 A full-stack Node.js and Express web application that allows users to log bird sightings, track their locations on an interactive map, and react to each sighting with thumbs up/down. This project integrates MongoDB for persistent storage and Leaflet.js for map visualization.
 
-## [Live Demo]()
+## [Live Demo](https://bird-journal-d3oz.onrender.com)
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
@@ -71,7 +71,7 @@ http://localhost:8080
 6. The interactive Leaflet map updates with each new entry automatically.
 
 ## Screenshots
-[Live Demo]()
+[Live Demo](https://bird-journal-d3oz.onrender.com)
 
 <img width="707" height="892" alt="Screenshot 2025-11-03 003801" src="https://github.com/user-attachments/assets/14276d90-7404-41e8-b523-3ef1ac7a6fd7" />
 
