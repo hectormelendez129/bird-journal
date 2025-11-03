@@ -1,6 +1,6 @@
-// config/database.js
-module.exports = {
+require('dotenv').config();
 
-    'url' : 'mongodb+srv://demo:demo@cluster0.q2ojb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 
-    'dbName': 'demo'
+module.exports = {
+  url: process.env.MONGO_URI,
+  dbName: process.env.DB_NAME
 };
