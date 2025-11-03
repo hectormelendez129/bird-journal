@@ -54,7 +54,7 @@ npm install
 ```
 4. Start the server:
 ```bash
-nodemon server.js
+npm run dev
 ```
 5. Open your browser and go to:
 ```bash
