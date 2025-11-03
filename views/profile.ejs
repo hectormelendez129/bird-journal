@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
 <div class="container">
@@ -37,33 +41,45 @@
             </div>
         </div>
         <div class="col-sm-6">
-          <h3>Messages</h3>
+          <h2>Add a Bird</h2>
+        <% if (user.local.email) { %>
+          <form action="/messages" method="POST">
+            <input type="text" value="<%= user.local.email %>" name="name">
+            <input type="text" placeholder="species" name="species">
+            <input type="number" step="0.01" placeholder="lat" name="lat">
+            <input type="number" step="0.01" placeholder="long" name="long">
+            <input type="text" placeholder="message" name="notes">
+
+            <button type="submit">Submit</button>
+          </form>
+          <!-- List of birds -->
+          <h3>List of Birds</h3>
           <ul class="messages">
           <% for(var i=0; i<messages.length; i++) {%>
             <li class="message">
               <span><%= messages[i].name %></span>
-              <span><%= messages[i].msg %></span>
+              <span><%= messages[i].species %></span>
+              <span><%= messages[i].lat %></span>
+              <span><%= messages[i].long %></span>
+              <span><%= messages[i].notes %></span>
               <span><%= messages[i].thumbUp %></span>
               <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
-              <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
               <span><i class="fa fa-trash" aria-hidden="true"></i></span>
             </li>
           <% } %>
           </ul>
+          <!-- Google Map -->
+          <h3>Bird Sightings Map</h3>
+          <div id="map" style="height:400px; width:100%;"></div>
 
-          <h2>Add a message</h2>
-        <% if (user.local.email) { %>
-          <form action="/messages" method="POST">
-            <input type="text" value="<%= user.local.email %>" name="name">
-            <input type="text" placeholder="message" name="msg">
-            <button type="submit">Submit</button>
-          </form>
+          
         </div>
         <% } %>
 
 </div>
 
 <script src="main.js"></script>
+<script src="/map.js"></script>
 
 </body>
 </html>

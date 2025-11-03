@@ -1,5 +1,14 @@
 module.exports = function (app, passport, db) {
 
+  /*****Bird Sighting for map******/
+  app.get('/api/birds', isLoggedIn, (req, res) => { //<< make api available for map
+    db.collection('messages').find().toArray((err, result) => {
+      if (err) return res.status(500).send(err);
+      res.json(result);
+    });
+  });
+  /*****Bird Sighting for map*/
+
   // normal routes ===============================================================
 
   // show the home page (will also have our login links)
@@ -29,7 +38,15 @@ module.exports = function (app, passport, db) {
   // message board routes ===============================================================
 
   app.post('/messages', (req, res) => {
-    db.collection('messages').save({ name: req.body.name, msg: req.body.msg, thumbUp: 0, thumbDown: 0 }, (err, result) => {
+    db.collection('messages').save({
+       name: req.body.name, 
+       species: req.body.species, 
+       lat: req.body.lat, 
+       long: req.body.long, 
+       notes: req.body.notes, 
+       thumbUp: 0, 
+       thumbDown: 0 }, 
+       (err, result) => {
       if (err) return console.log(err)
       console.log('saved to database')
       res.redirect('/profile')
@@ -38,7 +55,13 @@ module.exports = function (app, passport, db) {
   /***************Thumbs UP*********/
   app.put('/messages/thumbup', (req, res) => {
     db.collection('messages')
-      .findOneAndUpdate({ name: req.body.name, msg: req.body.msg }, {
+      .findOneAndUpdate({ 
+        name: req.body.name, 
+       species: req.body.species, 
+       lat: req.body.lat, 
+       long: req.body.long, 
+       notes: req.body.notes}, 
+       {
         $set: {
           thumbUp: req.body.thumbUp + 1
         }
@@ -56,7 +79,13 @@ module.exports = function (app, passport, db) {
   /****Thumbs Down*****/
   app.put('/messages/thumbdown', (req, res) => {
     db.collection('messages')
-      .findOneAndUpdate({ name: req.body.name, msg: req.body.msg }, {
+      .findOneAndUpdate({ 
+        name: req.body.name, 
+       species: req.body.species, 
+       lat: req.body.lat, 
+       long: req.body.long, 
+       notes: req.body.notes}, 
+       {
         $set: {
           thumbUp: req.body.thumbUp - 1
         }
@@ -71,7 +100,13 @@ module.exports = function (app, passport, db) {
   /****End Thumbs Down*****/
 
   app.delete('/messages', (req, res) => {
-    db.collection('messages').findOneAndDelete({ name: req.body.name, msg: req.body.msg }, (err, result) => {
+    db.collection('messages').findOneAndDelete({ 
+      name: req.body.name, 
+       species: req.body.species, 
+       lat: req.body.lat, 
+       long: req.body.long, 
+       notes: req.body.notes}, 
+       (err, result) => {
       if (err) return res.send(500, err)
       res.send('Message deleted!')
     })
