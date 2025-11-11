@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (bird.lat && bird.long) {
                     const marker = L.marker([bird.lat, bird.long]).addTo(map);
                     marker.bindPopup(
-                        `<b>${bird.species}</b><br>${bird.name}<br>${bird.notes}`
+                        `<b>${bird.species}</b>
+                        <br>${bird.name}
+                        <br>${bird.notes}`
                     );
                 }
             });

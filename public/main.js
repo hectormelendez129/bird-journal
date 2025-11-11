@@ -91,11 +91,3 @@ Array.from(trash).forEach(function (element) {
     })
   });
 });
-
-// name: req.body.name,
-//        species: req.body.species,
-//        lat: req.body.lat,
-//        long: req.body.long,
-//        notes: req.body.notes,
-//        thumbUp: 0,
-//        thumbDown: 0 
